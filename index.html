@@ -140,7 +140,7 @@
   <body>
     <table align="center">
       <tr>
-        <th>信息V18</th>
+        <th>信息V19</th>
         <th>内容</th>
       </tr>
       <!-- <tr>
@@ -215,7 +215,7 @@
       switch (action) {
         case "addkh": //新建对话中的访客信息
           addkh.innerText = JSON.stringify(obj); //全部数据
-          var str = obj.custom_info;
+          var str = decodeURIComponent(obj.custom_info);
           // custId.innerText = obj.ucust_id || "没有ucust_id";
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           if (infoArr.length > 0 && infoArr) {
