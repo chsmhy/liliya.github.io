@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://static.runoob.com/assets/simditor/2.3.6/scripts/module.js"></script>
+    <style type="text/css">
+      html,
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        box-sizing: border-box;
+        color: #28334b;
+      }
+      .fl {
+        float: left;
+      }
+      .fr {
+        float: right;
+      }
+      .clearfix:after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      input {
+        width: 100%;
+        border: 1px solid #ced5e0;
+        border-radius: 2px;
+        padding: 0 5px;
+        outline: none;
+        height: 24px;
+        line-height: 22px;
+        margin-bottom: 5px;
+      }
+      input:focus {
+        border: 1px solid #a3b1c7;
+      }
+      ::-webkit-input-placeholder {
+        color: #8da2b5;
+      }
+      :-moz-placeholder {
+        color: #8da2b5;
+      }
+      ::-moz-placeholder {
+        color: #8da2b5;
+      }
+      :-ms-input-placeholder {
+        color: #8da2b5;
+      }
+      body {
+        overflow: auto;
+      }
+      body > dl {
+        padding: 10px;
+      }
+      body > dl > dt {
+        height: 24px;
+        line-height: 24px;
+        font-weight: bold;
+      }
+      body > dl > dd {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px dotted #ced5e0;
+      }
+      dd .btn_blue {
+        display: inline-block;
+        background-color: #3b99fc;
+        padding: 0 10px;
+        height: 24px;
+        line-height: 24px;
+        color: #fff;
+        border-radius: 2px;
+      }
+      dd .btn_blue:hover {
+        background-color: #4ea3fc;
+      }
+      dd .btn_blue:active {
+        background-color: #3489e2;
+      }
+      .tab {
+        display: flex;
+        align-items: center;
+        margin: 5px;
+      }
+      .tab-label {
+        border: 1px solid #999;
+      }
+      .tab-value {
+        border: 1px solid #999;
+      }
+      .ft-bold {
+        font-weight: bold;
+      }
+
+      /* 表格样式 */
+      table {
+        width: 240px;
+        border-collapse: collapse; /* 折叠边框，使其看起来更加紧凑 */
+        margin: 5px 0; /* 添加一些外边距 */
+      }
+      /* 表头样式 */
+      th {
+        text-align: center;
+        background-color: #f1f1f1; /* 背景色 */
+        text-align: left; /* 左对齐文本 */
+        padding: 5px; /* 内边距 */
+        border-bottom: 1px solid #ddd; /* 底部边框 */
+        border-right: 1px solid #ddd;
+        font-weight: bold;
+      }
+      /* 表格单元格样式 */
+      td {
+        width: auto;
+        min-width: 90px;
+        text-align: center;
+        padding: 5px; /* 内边距 */
+        border-bottom: 1px solid #ddd; /* 底部边框 */
+        border-right: 1px solid #ddd;
+      }
+      /* 鼠标悬停时的行样式 */
+      td:hover {
+        background-color: #f5f5f5; /* 鼠标悬停背景色 */
+      }
+    </style>
+  </head>
+  <body>
+    <table align="center">
+      <tr>
+        <th>信息V10</th>
+        <th>内容</th>
+      </tr>
+      <tr>
+        <td>客户手机号</td>
+        <td id="phone"></td>
+      </tr>
+      <tr>
+        <td>客户Id</td>
+        <td id="cusId"></td>
+      </tr>
+      <tr>
+        <td>渠道名称</td>
+        <td id="chnlName"></td>
+      </tr>
+      <tr>
+        <td>来源</td>
+        <td id="source"></td>
+      </tr>
+      <tr>
+        <td>版本号</td>
+        <td id="version"></td>
+      </tr>
+      <tr>
+        <td>系统版本</td>
+        <td id="systemVer"></td>
+      </tr>
+      <tr>
+        <td>云手机数量</td>
+        <td id="instanceNum"></td>
+      </tr>
+    </table>
+    <div>----------------------------------------</div>
+    <div>原装进口</div>
+    <div id="addkh">原装进口</div>
+    <div>--------------------------------------------------</div>
+    <div>decode解码后</div>
+    <div id="cmduser"></div>
+    <div>--------------------------------------------------</div>
+    <div>switchkh本地存储字符串</div>
+    <div id="selfData"></div>
+  </body>
+  <script type="text/javascript">
+    /*
+    手机号-phone   客户id-custId   渠道名称-chnlName   来源-source  版本号-version  系统版本-systemVer  云手机数量-instanceNum
+    */
+    var cmduser = document.getElementById("cmduser");
+    var selfData = document.getElementById("selfData");
+    /* 表格字段 dom*/
+    var phone = document.getElementById("phone");
+    var custId = document.getElementById("custId");
+    var source = document.getElementById("source");
+    var systemVer = document.getElementById("systemVer");
+    var instanceNum = document.getElementById("instanceNum");
+    var chnlName = document.getElementById("chnlName");
+    var version = document.getElementById("version");
+    /* 表格字段 */
+    function cmd_to_user(jsonStr) {
+      //获取
+      var obj = JSON.parse(jsonStr);
+      var action = obj.action;
+      //赋值
+
+      switch (action) {
+        case "addkh": //新建对话中的访客信息
+          iframe_addkh(obj);
+          break;
+        case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
+          selfData.innerText = "进来了switchkh!";
+          var switchStr = window.parent.localstorage.getItem(`data_${obj.gid}`);
+          if (switchStr) {
+            selfData.innerText = switchStr;
+            var appData = JSON.parse(switchStr);
+            phone.innerText = appData.phone;
+            custId.innerText = appData.custId;
+            source.innerText = appData.source;
+            systemVer.innerText = appData.systemVer;
+            instanceNum.innerText = appData.instanceNum;
+            chnlName.innerText = appData.chnlName;
+          } else {
+            selfData.innerText = "没有存储数据呢";
+          }
+          // const userData = JSON.parse(switchStr);
+          // if (switchStr) {
+          //   chnlName.innerText =  switchStr.channel;
+          // }
+          break;
+      }
+    }
+    function iframe_addkh(obj) {
+      var appData = decodeURIComponent(obj.custom_info);
+      window.parent.localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
+
+      addkh.innerText = obj.custom_info;
+      cmduser.innerText = JSON.stringify(appData); //appData 应该是一个json字符串  应该不需要转译才对啊
+      var data = JSON.parse(appData);
+      phone.innerText = data.phone;
+      custId.innerText = data.custId;
+      source.innerText = data.source;
+      systemVer.innerText = data.systemVer;
+      instanceNum.innerText = data.instanceNum;
+      chnlName.innerText = data.chnlName;
+      // var visitor = {
+      //   gid: obj.gid,
+      //   custom_info: obj.custom_info,
+      //   from: obj.from,
+      //   ip: obj.ip,
+      //   ipAddr: obj.ipAddr,
+      //   keyword: obj.keyword,
+      //   landpage: obj.landpage,
+      //   openid: obj.openid,
+      //   talkpage: obj.talkpage,
+      //   talktitle: obj.talktitle,
+      //   tid: obj.tid,
+      //   ucust: obj.ucust,
+      //   account: obj.account
+      // };
+      // var str = JSON.stringify(visitor);
+    }
+
+    cmd_to_user();
+  </script>
+</html>
