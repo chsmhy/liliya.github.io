@@ -140,7 +140,7 @@
   <body>
     <table align="center">
       <tr>
-        <th>信息V13</th>
+        <th>信息V14</th>
         <th>内容</th>
       </tr>
       <tr>
@@ -205,6 +205,7 @@
 
       switch (action) {
         case "addkh": //新建对话中的访客信息
+          addkh.innerText = "没进来过吗";
           iframe_addkh(obj);
           addkh.innerText = JSON.stringify(obj);
           break;
@@ -246,10 +247,8 @@
         ucust: obj.ucust,
         account: obj.account
       };
-
       var appData = decodeURIComponent(visitor.custom_info);
       window.parent.localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
-
       cmduser.innerText = JSON.stringify(appData); //appData 应该是一个json字符串  应该不需要转译才对啊
       var data = JSON.parse(appData);
       phone.innerText = data.phone;
@@ -258,22 +257,6 @@
       systemVer.innerText = data.systemVer;
       instanceNum.innerText = data.instanceNum;
       chnlName.innerText = data.chnlName;
-      // var visitor = {
-      //   gid: obj.gid,
-      //   custom_info: obj.custom_info,
-      //   from: obj.from,
-      //   ip: obj.ip,
-      //   ipAddr: obj.ipAddr,
-      //   keyword: obj.keyword,
-      //   landpage: obj.landpage,
-      //   openid: obj.openid,
-      //   talkpage: obj.talkpage,
-      //   talktitle: obj.talktitle,
-      //   tid: obj.tid,
-      //   ucust: obj.ucust,
-      //   account: obj.account
-      // };
-      // var str = JSON.stringify(visitor);
     }
 
     cmd_to_user();
