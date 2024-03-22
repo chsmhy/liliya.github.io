@@ -140,7 +140,7 @@
   <body>
     <table align="center">
       <tr>
-        <th>信息V14</th>
+        <th>信息V15</th>
         <th>内容</th>
       </tr>
       <tr>
@@ -206,12 +206,13 @@
       switch (action) {
         case "addkh": //新建对话中的访客信息
           addkh.innerText = "没进来过吗";
-          iframe_addkh(obj);
           addkh.innerText = JSON.stringify(obj);
+          iframe_addkh(obj);
+
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
           selfData.innerText = "进来了switchkh!";
-          var switchStr = window.parent.localstorage.getItem(`data_${obj.gid}`);
+          var switchStr = localstorage.getItem(`data_${obj.gid}`) || "";
           if (switchStr) {
             selfData.innerText = switchStr;
             var appData = JSON.parse(switchStr);
@@ -232,6 +233,7 @@
       }
     }
     function iframe_addkh(obj) {
+      selfData.innerText = "iframe_addkh";
       var visitor = {
         gid: obj.gid,
         custom_info: obj.custom_info,
@@ -248,7 +250,8 @@
         account: obj.account
       };
       var appData = decodeURIComponent(visitor.custom_info);
-      window.parent.localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
+      // localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
+      var switchStr = localstorage.getItem(`data_${obj.gid}`);
       cmduser.innerText = JSON.stringify(appData); //appData 应该是一个json字符串  应该不需要转译才对啊
       var data = JSON.parse(appData);
       phone.innerText = data.phone;
