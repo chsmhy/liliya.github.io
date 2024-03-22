@@ -140,7 +140,7 @@
   <body>
     <table align="center">
       <tr>
-        <th>信息V16</th>
+        <th>信息V17</th>
         <th>内容</th>
       </tr>
       <tr>
@@ -209,21 +209,23 @@
 
       switch (action) {
         case "addkh": //新建对话中的访客信息
+          let str = `拿到了session: ${obj.gid}`;
+          sessionStorage.setItem(`data_${obj.gid}`, str);
           addkh.innerText = JSON.stringify(obj); //全部数据
           iframe_addkh(obj);
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
           selfData.innerText = "进来了switchkh!";
-          var switchStr = localstorage.getItem(`data_${obj.gid}`) || "";
+          var switchStr = sessionStorage.getItem(`data_${obj.gid}`);
           if (switchStr) {
             selfData.innerText = switchStr;
-            var appData = JSON.parse(switchStr);
-            phone.innerText = appData.phone;
-            custId.innerText = appData.custId;
-            source.innerText = appData.source;
-            systemVer.innerText = appData.systemVer;
-            instanceNum.innerText = appData.instanceNum;
-            chnlName.innerText = appData.chnlName;
+            // var appData = JSON.parse(switchStr);
+            // phone.innerText = appData.phone;
+            // custId.innerText = appData.custId;
+            // source.innerText = appData.source;
+            // systemVer.innerText = appData.systemVer;
+            // instanceNum.innerText = appData.instanceNum;
+            // chnlName.innerText = appData.chnlName;
           } else {
             selfData.innerText = "没有存储数据呢";
           }
@@ -254,10 +256,10 @@
         nodeInfo.innerText = "开始转码";
         cmduser.innerText = visitor.custom_info; //没有转码
         var appData = decodeURIComponent(visitor.custom_info);
-        nodeInfo.innerText = "转码成功";
-        localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
+        nodeInfo.innerText = "appData";
+
         nodeInfo.innerText = "本地存储成功";
-        cmduser.innerText = JSON.stringify(appData); //appData 应该是一个json字符串  应该不需要转译才对啊
+        cmduser.innerText = appData; //appData 应该是一个json字符串  应该不需要转译才对啊
         var data = JSON.parse(appData);
         phone.innerText = data.phone;
         custId.innerText = data.custId;
