@@ -140,7 +140,7 @@
   <body>
     <table align="center">
       <tr>
-        <th>信息V11</th>
+        <th>信息V12</th>
         <th>内容</th>
       </tr>
       <tr>
@@ -174,7 +174,7 @@
     </table>
     <div>----------------------------------------</div>
     <div>原装进口</div>
-    <div id="addkh">原装进口</div>
+    <div id="addkh"></div>
     <div>--------------------------------------------------</div>
     <div>decode解码后</div>
     <div id="cmduser"></div>
@@ -230,10 +230,26 @@
       }
     }
     function iframe_addkh(obj) {
-      var appData = decodeURIComponent(obj.custom_info);
+      var visitor = {
+        gid: obj.gid,
+        custom_info: obj.custom_info,
+        from: obj.from,
+        ip: obj.ip,
+        ipAddr: obj.ipAddr,
+        keyword: obj.keyword,
+        landpage: obj.landpage,
+        openid: obj.openid,
+        talkpage: obj.talkpage,
+        talktitle: obj.talktitle,
+        tid: obj.tid,
+        ucust: obj.ucust,
+        account: obj.account
+      };
+
+      var appData = decodeURIComponent(visitor.custom_info);
       window.parent.localstorage.setItem(`data_${obj.gid}`, JSON.stringify(appData));
 
-      addkh.innerText = obj.custom_info;
+      addkh.innerText = JSON.stringify(visitor);
       cmduser.innerText = JSON.stringify(appData); //appData 应该是一个json字符串  应该不需要转译才对啊
       var data = JSON.parse(appData);
       phone.innerText = data.phone;
