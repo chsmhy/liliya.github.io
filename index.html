@@ -114,7 +114,8 @@
       }
       /* 表头样式 */
       th {
-        text-align: center;
+        display: flex;
+        justify-content: center;
         background-color: #f1f1f1; /* 背景色 */
         text-align: left; /* 左对齐文本 */
         padding: 5px; /* 内边距 */
@@ -176,7 +177,7 @@
         <td id="instanceNum"></td>
       </tr>
     </table>
-    <div id="nodeInfo"></div>
+    <div id="nodeInfo">暂无信息</div>
   </body>
   <script type="text/javascript">
     /*
@@ -234,7 +235,10 @@
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
           // custId.innerText = sessionStorage.getItem(`custId_${obj.gid}`) || "没有ucust_id";
-          cmduser.innerText = sessionStorage.getItem(`cmduser_${obj.gid}`) || "无";
+          if (condition) {
+            nodeInfo.innerText = "没有获取到自定义信息" + JSON.stringify(obj);
+          }
+          //cmduser.innerText = sessionStorage.getItem(`cmduser_${obj.gid}`) || "无";
           chnlName.innerText = sessionStorage.getItem(`chnlName_${obj.gid}`) || "无";
           phoneType.innerText = sessionStorage.getItem(`phoneType_${obj.gid}`) || "无";
           systemVer.innerText = "android  " + sessionStorage.getItem(`systemVer_${obj.gid}`) || "无";
