@@ -211,7 +211,7 @@
         obj = JSON.parse(jsonStr);
         action = obj.action;
       } else {
-        nodeInfo.innerText = "不在客服环境，无法调用内部方法";
+        nodeInfo.innerText = "不在客服环境，无法获取数据";
       }
       //赋值
       switch (action) {
@@ -274,7 +274,7 @@
           break;
       }
     }
-
+    cmd_to_user();
     // function iframe_addkh(obj) {
     //   var visitor = {
     //     gid: obj.gid,
