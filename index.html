@@ -176,6 +176,7 @@
         <td id="instanceNum"></td>
       </tr>
     </table>
+    <div id="nodeInfo"></div>
   </body>
   <script type="text/javascript">
     /*
@@ -203,25 +204,27 @@
       switch (action) {
         case "addkh": //新建对话中的访客信息
           addkh.innerText = JSON.stringify(obj); //全部数据
-          var str = decodeURIComponent(obj.custom_info);
-          // custId.innerText = obj.ucust_id || "没有ucust_id";
-          var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
-          if (infoArr.length > 0 && infoArr) {
-            cmduser.innerText = infoArr.toString || "无";
-            chnlName.innerText = infoArr[0] || "无";
-            phoneType.innerText = infoArr[1] || "无";
-            systemVer.innerText = "android  " + infoArr[2] || "无";
-            version.innerText = infoArr[3] || "无";
-            instanceNum.innerText = infoArr[4] || "无";
-            //存储
-            // sessionStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
-            sessionStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
-            sessionStorage.setItem(`phoneType_${obj.gid}`, infoArr[1]);
-            sessionStorage.setItem(`systemVer_${obj.gid}`, infoArr[2]);
-            sessionStorage.setItem(`version_${obj.gid}`, infoArr[3]);
-            sessionStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
+          if (obj.custom_info) {
+            var str = decodeURIComponent(obj.custom_info);
+            // custId.innerText = obj.ucust_id || "没有ucust_id";
+            var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
+            if (infoArr.length > 0 && infoArr) {
+              cmduser.innerText = infoArr.toString || "无";
+              chnlName.innerText = infoArr[0] || "无";
+              phoneType.innerText = infoArr[1] || "无";
+              systemVer.innerText = "android  " + infoArr[2] || "无";
+              version.innerText = infoArr[3] || "无";
+              instanceNum.innerText = infoArr[4] || "无";
+              //存储
+              // sessionStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
+              sessionStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
+              sessionStorage.setItem(`phoneType_${obj.gid}`, infoArr[1]);
+              sessionStorage.setItem(`systemVer_${obj.gid}`, infoArr[2]);
+              sessionStorage.setItem(`version_${obj.gid}`, infoArr[3]);
+              sessionStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
+            }
           } else {
-            nodeInfo.innerText = "没有custom_info";
+            nodeInfo.innerText = "没有获取到自定义信息" + JSON.stringify(obj);
           }
 
           // let str = `拿到了session: ${obj.gid}`;
