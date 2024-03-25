@@ -108,7 +108,7 @@
 
       /* 表格样式 */
       table {
-        width: 240px;
+        width: 100%;
         border-collapse: collapse; /* 折叠边框，使其看起来更加紧凑 */
         margin: 5px 0; /* 添加一些外边距 */
       }
@@ -128,7 +128,7 @@
       /* 表格单元格样式 */
       td {
         width: auto;
-        min-width: 90px;
+
         text-align: center;
         padding: 5px; /* 内边距 */
         border-bottom: 1px solid #ddd; /* 底部边框 */
@@ -138,47 +138,52 @@
       td:hover {
         background-color: #f5f5f5; /* 鼠标悬停背景色 */
       }
+      .tb-box {
+        width: 240px;
+      }
     </style>
   </head>
   <body>
-    <table align="center">
-      <tr>
-        <th align="center">信息</th>
-        <th align="center">内容</th>
-      </tr>
-      <!-- <tr>
-        <td>客户手机号</td>
-        <td id="phone"></td>
-      </tr> -->
-      <!-- <tr>
-        <td>客户Id</td>
-        <td id="cusId"></td>
-      </tr> -->
-      <tr>
-        <td>渠道名称</td>
-        <td id="chnlName"></td>
-      </tr>
-      <!-- <tr>
-        <td>来源</td>
-        <td id="source"></td>
-      </tr> -->
-      <tr>
-        <td>手机型号</td>
-        <td id="phoneType"></td>
-      </tr>
-      <tr>
-        <td>系统版本</td>
-        <td id="systemVer"></td>
-      </tr>
-      <tr>
-        <td>版本号</td>
-        <td id="version"></td>
-      </tr>
-      <tr>
-        <td>云手机数量</td>
-        <td id="instanceNum"></td>
-      </tr>
-    </table>
+    <div class="tb-box">
+      <table>
+        <tr>
+          <th>信息</th>
+          <th>内容</th>
+        </tr>
+        <!-- <tr>
+          <td>客户手机号</td>
+          <td id="phone"></td>
+        </tr> -->
+        <!-- <tr>
+          <td>客户Id</td>
+          <td id="cusId"></td>
+        </tr> -->
+        <tr>
+          <td>渠道名称</td>
+          <td id="chnlName"></td>
+        </tr>
+        <!-- <tr>
+          <td>来源</td>
+          <td id="source"></td>
+        </tr> -->
+        <tr>
+          <td>手机型号</td>
+          <td id="phoneType"></td>
+        </tr>
+        <tr>
+          <td>系统版本</td>
+          <td id="systemVer"></td>
+        </tr>
+        <tr>
+          <td>版本号</td>
+          <td id="version"></td>
+        </tr>
+        <tr>
+          <td>云手机数量</td>
+          <td id="instanceNum"></td>
+        </tr>
+      </table>
+    </div>
     <div id="nodeInfo">暂无信息</div>
   </body>
   <script type="text/javascript">
@@ -206,7 +211,7 @@
 
       switch (action) {
         case "addkh": //新建对话中的访客信息
-          addkh.innerText = JSON.stringify(obj); //全部数据
+          //全部数据
           if (obj.custom_info) {
             var str = decodeURIComponent(obj.custom_info);
             // custId.innerText = obj.ucust_id || "没有ucust_id";
