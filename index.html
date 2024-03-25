@@ -190,13 +190,15 @@
     /*
     手机号-phone   客户id-custId   渠道名称-chnlName   来源-source  版本号-version  系统版本-systemVer  云手机数量-instanceNum
     */
-    var cmduser = document.getElementById("cmduser");
-    var selfData = document.getElementById("selfData");
+    // var cmduser = document.getElementById("cmduser");
+    // var selfData = document.getElementById("selfData");
     /* 表格字段 dom*/
-    var phone = document.getElementById("phone");
+    //var phone = document.getElementById("phone");
+
+    //var custId = document.getElementById("custId");
+
+    // var source = document.getElementById("source");
     var phoneType = document.getElementById("phoneType");
-    var custId = document.getElementById("custId");
-    var source = document.getElementById("source");
     var systemVer = document.getElementById("systemVer");
     var instanceNum = document.getElementById("instanceNum");
     var chnlName = document.getElementById("chnlName");
@@ -208,7 +210,6 @@
       var obj = JSON.parse(jsonStr);
       var action = obj.action;
       //赋值
-
       switch (action) {
         case "addkh": //新建对话中的访客信息
           //全部数据
@@ -242,9 +243,7 @@
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
           // custId.innerText = sessionStorage.getItem(`custId_${obj.gid}`) || "没有ucust_id";
-          if (condition) {
-            nodeInfo.innerText = "没有获取到自定义信息" + JSON.stringify(obj);
-          }
+
           //cmduser.innerText = sessionStorage.getItem(`cmduser_${obj.gid}`) || "无";
           chnlName.innerText = sessionStorage.getItem(`chnlName_${obj.gid}`) || "无";
           phoneType.innerText = sessionStorage.getItem(`phoneType_${obj.gid}`) || "无";
@@ -272,41 +271,41 @@
           break;
       }
     }
-    function iframe_addkh(obj) {
-      var visitor = {
-        gid: obj.gid,
-        custom_info: obj.custom_info,
-        from: obj.from,
-        ip: obj.ip,
-        ipAddr: obj.ipAddr,
-        keyword: obj.keyword,
-        landpage: obj.landpage,
-        openid: obj.openid,
-        talkpage: obj.talkpage,
-        talktitle: obj.talktitle,
-        tid: obj.tid,
-        ucust: obj.ucust,
-        account: obj.account
-      };
-      if (visitor.custom_info) {
-        nodeInfo.innerText = "开始转码";
-        cmduser.innerText = visitor.custom_info; //没有转码
-        var appData = decodeURIComponent(visitor.custom_info);
-        nodeInfo.innerText = "appData";
+    // function iframe_addkh(obj) {
+    //   var visitor = {
+    //     gid: obj.gid,
+    //     custom_info: obj.custom_info,
+    //     from: obj.from,
+    //     ip: obj.ip,
+    //     ipAddr: obj.ipAddr,
+    //     keyword: obj.keyword,
+    //     landpage: obj.landpage,
+    //     openid: obj.openid,
+    //     talkpage: obj.talkpage,
+    //     talktitle: obj.talktitle,
+    //     tid: obj.tid,
+    //     ucust: obj.ucust,
+    //     account: obj.account
+    //   };
+    //   if (visitor.custom_info) {
+    //     nodeInfo.innerText = "开始转码";
+    //     cmduser.innerText = visitor.custom_info; //没有转码
+    //     var appData = decodeURIComponent(visitor.custom_info);
+    //     nodeInfo.innerText = "appData";
 
-        nodeInfo.innerText = "本地存储成功";
-        cmduser.innerText = appData; //appData 应该是一个json字符串  应该不需要转译才对啊
-        var data = JSON.parse(appData);
-        phone.innerText = data.phone;
-        custId.innerText = data.custId;
-        source.innerText = data.source;
-        systemVer.innerText = data.systemVer;
-        instanceNum.innerText = data.instanceNum;
-        chnlName.innerText = data.chnlName;
-      } else {
-        cmduser.innerText = " 没有 custom_info 数据";
-      }
-    }
+    //     nodeInfo.innerText = "本地存储成功";
+    //     cmduser.innerText = appData; //appData 应该是一个json字符串  应该不需要转译才对啊
+    //     var data = JSON.parse(appData);
+    //     phone.innerText = data.phone;
+    //     custId.innerText = data.custId;
+    //     source.innerText = data.source;
+    //     systemVer.innerText = data.systemVer;
+    //     instanceNum.innerText = data.instanceNum;
+    //     chnlName.innerText = data.chnlName;
+    //   } else {
+    //     cmduser.innerText = " 没有 custom_info 数据";
+    //   }
+    // }
 
     cmd_to_user();
   </script>
