@@ -176,7 +176,7 @@
           <td id="version"></td>
         </tr>
         <tr>
-          <td>云手机数量18</td>
+          <td>云手机数量19</td>
           <td id="instanceNum"></td>
         </tr>
       </table>
@@ -207,15 +207,17 @@
       //获取
       var obj;
       var action;
-      console.log("没拿到吗？？？", jsonStr);
+
       obj = JSON.parse(jsonStr);
       action = obj.action;
-      // if (jsonStr) {
-      //   obj = JSON.parse(jsonStr);
-      //   action = obj.action;
-      // } else {
-      //   nodeInfo.innerText = "不在客服环境，无法获取数据";
-      // }
+      console.log("没拿到吗？？？", obj);
+      if (obj) {
+        // obj = JSON.parse(jsonStr);
+        // action = obj.action;
+        console.log("拿到了");
+      } else {
+        nodeInfo.innerText = "不在客服环境，无法获取数据";
+      }
       //赋值
       switch (action) {
         case "addkh": //新建对话中的访客信息
