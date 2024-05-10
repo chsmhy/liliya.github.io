@@ -176,7 +176,7 @@
           <td id="version"></td>
         </tr>
         <tr>
-          <td>云手机数量20</td>
+          <td>云手机数量21</td>
           <td id="instanceNum"></td>
         </tr>
       </table>
@@ -228,7 +228,7 @@
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           console.log("展示的信息组内容：", infoArr);
           if (infoArr.length > 0 && infoArr) {
-            cmduser.innerText = infoArr.toString || "无";
+            // cmduser.innerText = infoArr.toString || "无";
             chnlName.innerText = infoArr[0] || "无";
             phoneType.innerText = infoArr[1] || "无";
             systemVer.innerText = "android  " + infoArr[2] || "无";
