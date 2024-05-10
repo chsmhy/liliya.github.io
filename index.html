@@ -176,7 +176,7 @@
           <td id="version"></td>
         </tr>
         <tr>
-          <td>云手机数量21</td>
+          <td>云手机数量22</td>
           <td id="instanceNum"></td>
         </tr>
       </table>
@@ -228,12 +228,12 @@
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           console.log("展示的信息组内容：", infoArr);
           if (infoArr.length > 0 && infoArr) {
-            // cmduser.innerText = infoArr.toString || "无";
             chnlName.innerText = infoArr[0] || "无";
             phoneType.innerText = infoArr[1] || "无";
             systemVer.innerText = "android  " + infoArr[2] || "无";
             version.innerText = infoArr[3] || "无";
             instanceNum.innerText = infoArr[4] || "无";
+            console.log("version.innerText", version.innerText, infoArr[3]);
             //存储
             // sessionStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
             sessionStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
