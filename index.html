@@ -176,7 +176,7 @@
           <td id="version"></td>
         </tr>
         <tr>
-          <td>云手机数量22</td>
+          <td>云手机数量</td>
           <td id="instanceNum"></td>
         </tr>
       </table>
@@ -231,9 +231,9 @@
             chnlName.innerText = infoArr[0] || "无";
             phoneType.innerText = infoArr[1] || "无";
             systemVer.innerText = "android  " + infoArr[2] || "无";
-            version.innerText = infoArr[3] || "无";
+            version.innerText = infoArr[3];
             instanceNum.innerText = infoArr[4] || "无";
-            console.log("version.innerText", version.innerText, infoArr[3]);
+
             //存储
             // sessionStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
             sessionStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
