@@ -201,12 +201,13 @@
     var chnlName = document.getElementById("chnlName");
     var version = document.getElementById("version");
     var nodeInfo = document.getElementById("nodeInfo");
-
+    cmd_to_user();
     /* 表格字段 */
     function cmd_to_user(jsonStr) {
       //获取
       var obj;
       var action;
+      console.log("没拿到吗？？？", jsonStr);
       if (jsonStr) {
         obj = JSON.parse(jsonStr);
         action = obj.action;
@@ -274,7 +275,7 @@
           break;
       }
     }
-    cmd_to_user();
+
     // function iframe_addkh(obj) {
     //   var visitor = {
     //     gid: obj.gid,
