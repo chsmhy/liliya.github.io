@@ -237,7 +237,7 @@
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           console.log("展示的信息组内容：", infoArr);
           nodeInfo.innerText = JSON.stringify(obj.custom_info);
-          let total = "本地缓存信息：" + JSON.stringify(obj.custom_info);
+          let total = "本地缓存信息：" + str;
           localStorage.setItem(`test110159`, total);
           if (infoArr.length > 0 && infoArr) {
             let systemVerData = ["PC", "h5"].includes(infoArr[0]) ? infoArr[2] : "android  " + infoArr[2];
