@@ -177,7 +177,7 @@
         </tr>
         <tr>
           <td>云手机数量</td>
-          <td id="instanceNum"></td>
+          <td id="instanceNum_no">-</td>
         </tr>
       </table>
     </div>
@@ -200,7 +200,7 @@
     /* 表格字段 dom*/
     var phoneType = document.getElementById("phoneType");
     var systemVer = document.getElementById("systemVer");
-    var instanceNum = document.getElementById("instanceNum");
+    // var instanceNum = document.getElementById("instanceNum");
     var chnlName = document.getElementById("chnlName");
     var version = document.getElementById("version");
     var nodeInfo = document.getElementById("nodeInfo");
@@ -245,7 +245,7 @@
             phoneType.innerText = infoArr[1] || "无";
             systemVer.innerText = systemVerData; //"android  " + infoArr[2] || "无";
             version.innerText = infoArr[3];
-            instanceNum.innerText = infoArr[4] || "无";
+            // instanceNum.innerText = infoArr[4] || "无";
 
             //存储
 
@@ -255,7 +255,7 @@
             localStorage.setItem(`phoneType_${obj.gid}`, infoArr[1]);
             localStorage.setItem(`systemVer_${obj.gid}`, systemVerData);
             localStorage.setItem(`version_${obj.gid}`, infoArr[3]);
-            localStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
+            // localStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
           } else {
             nodeInfo.innerText = "没有获取到自定义信息" + JSON.stringify(obj);
           }
@@ -275,7 +275,7 @@
             phoneType.innerText = localStorage.getItem(`phoneType_${obj.gid}`) || "无";
             systemVer.innerText = localStorage.getItem(`systemVer_${obj.gid}`) || "无";
             version.innerText = localStorage.getItem(`version_${obj.gid}`) || "无";
-            instanceNum.innerText = localStorage.getItem(`instanceNum_${obj.gid}`) || "无";
+            // instanceNum.innerText = localStorage.getItem(`instanceNum_${obj.gid}`) || "无";
           }
 
           // selfData.innerText = "进来了switchkh!";
