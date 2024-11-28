@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>13</title>
+    <title>v5内嵌页</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta charset="utf-8" />
@@ -164,7 +164,7 @@
           <td id="source"></td>
         </tr> -->
         <tr>
-          <td>手机型号</td>
+          <td>设备类型</td>
           <td id="phoneType"></td>
         </tr>
         <tr>
@@ -181,7 +181,15 @@
         </tr>
       </table>
     </div>
-    <div id="nodeInfo"></div>
+    <div id="nodeInfo">全部信息：</div>
+    <div>
+      存储的信息:
+      <div id="localInfo"></div>
+    </div>
+    <div style="margin-top: 20px">
+      当前信息点：
+      <div id="pointInfo"></div>
+    </div>
   </body>
   <script type="text/javascript">
     /*
@@ -190,32 +198,33 @@
     // var cmduser = document.getElementById("cmduser");
     // var selfData = document.getElementById("selfData");
     /* 表格字段 dom*/
-    //var phone = document.getElementById("phone");
-
-    //var custId = document.getElementById("custId");
-
-    // var source = document.getElementById("source");
     var phoneType = document.getElementById("phoneType");
     var systemVer = document.getElementById("systemVer");
     var instanceNum = document.getElementById("instanceNum");
     var chnlName = document.getElementById("chnlName");
     var version = document.getElementById("version");
     var nodeInfo = document.getElementById("nodeInfo");
+    var localInfo = document.getElementById("localInfo");
+    let pointInfo = document.getElementById("pointInfo");
     cmd_to_user();
     /* 表格字段 */
     function cmd_to_user(jsonStr) {
       //获取
-      var obj;
-      var action;
-
-      obj = JSON.parse(jsonStr);
-      action = obj.action;
+      let obj;
+      let action;
+      if (jsonStr) {
+        pointInfo.innerText = jsonStr;
+        obj = JSON.parse(jsonStr);
+        action = obj.action;
+      }
 
       if (obj) {
         // obj = JSON.parse(jsonStr);
         // action = obj.action;
         console.log("拿到了", obj);
+        nodeInfo.innerText = JSON.stringify(str);
       } else {
+        console.log("拿不到", obj);
         nodeInfo.innerText = "不在客服环境，无法获取数据";
       }
       //赋值
@@ -227,40 +236,50 @@
           // custId.innerText = obj.ucust_id || "没有ucust_id";
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           console.log("展示的信息组内容：", infoArr);
+          nodeInfo.innerText = JSON.stringify(obj.custom_info);
+          let total = "获取本地缓存信息成功" + JSON.stringify(obj.custom_info);
+          localStorage.setItem(`test110159`, total);
           if (infoArr.length > 0 && infoArr) {
+            let systemVerData = ["PC", "h5"].includes(infoArr[0]) ? infoArr[2] : "android  " + infoArr[2];
             chnlName.innerText = infoArr[0] || "无";
             phoneType.innerText = infoArr[1] || "无";
-            systemVer.innerText = "android  " + infoArr[2] || "无";
+            systemVer.innerText = systemVerData; //"android  " + infoArr[2] || "无";
             version.innerText = infoArr[3];
             instanceNum.innerText = infoArr[4] || "无";
 
             //存储
-            // sessionStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
-            sessionStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
-            sessionStorage.setItem(`phoneType_${obj.gid}`, infoArr[1]);
-            sessionStorage.setItem(`systemVer_${obj.gid}`, infoArr[2]);
-            sessionStorage.setItem(`version_${obj.gid}`, infoArr[3]);
-            sessionStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
+
+            // localStorage.setItem(`custId_${obj.gid}`, obj.ucust_id);
+
+            localStorage.setItem(`chnlName_${obj.gid}`, infoArr[0]);
+            localStorage.setItem(`phoneType_${obj.gid}`, infoArr[1]);
+            localStorage.setItem(`systemVer_${obj.gid}`, systemVerData);
+            localStorage.setItem(`version_${obj.gid}`, infoArr[3]);
+            localStorage.setItem(`instanceNum_${obj.gid}`, infoArr[4]);
           } else {
             nodeInfo.innerText = "没有获取到自定义信息" + JSON.stringify(obj);
           }
 
           // let str = `拿到了session: ${obj.gid}`;
-          // sessionStorage.setItem(`data_${obj.gid}`, str);
+          // localStorage.setItem(`data_${obj.gid}`, str);
           // addkh.innerText = JSON.stringify(obj); //全部数据
           // iframe_addkh(obj);
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
-          // custId.innerText = sessionStorage.getItem(`custId_${obj.gid}`) || "没有ucust_id";
+          // custId.innerText = localStorage.getItem(`custId_${obj.gid}`) || "没有ucust_id";
+          localInfo.innerText = localStorage.getItem(`test110159`);
 
-          //cmduser.innerText = sessionStorage.getItem(`cmduser_${obj.gid}`) || "无";
-          chnlName.innerText = sessionStorage.getItem(`chnlName_${obj.gid}`) || "无";
-          phoneType.innerText = sessionStorage.getItem(`phoneType_${obj.gid}`) || "无";
-          systemVer.innerText = "android  " + sessionStorage.getItem(`systemVer_${obj.gid}`) || "无";
-          version.innerText = sessionStorage.getItem(`version__${obj.gid}`) || "无";
-          instanceNum.innerText = sessionStorage.getItem(`instanceNum_${obj.gid}`) || "无";
+          // cmduser.innerText = localStorage.getItem(`cmduser_${obj.gid}`) || "无";
+          if (localStorage.getItem(`chnlName_${obj.gid}`)) {
+            chnlName.innerText = localStorage.getItem(`chnlName_${obj.gid}`) || "无";
+            phoneType.innerText = localStorage.getItem(`phoneType_${obj.gid}`) || "无";
+            systemVer.innerText = localStorage.getItem(`systemVer_${obj.gid}`) || "无";
+            version.innerText = localStorage.getItem(`version_${obj.gid}`) || "无";
+            instanceNum.innerText = localStorage.getItem(`instanceNum_${obj.gid}`) || "无";
+          }
+
           // selfData.innerText = "进来了switchkh!";
-          // var switchStr = sessionStorage.getItem(`data_${obj.gid}`);
+          // var switchStr = localStorage.getItem(`data_${obj.gid}`);
           // if (switchStr) {
           //   selfData.innerText = switchStr;
           //   // var appData = JSON.parse(switchStr);
