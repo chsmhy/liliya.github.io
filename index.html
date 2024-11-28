@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>v5内嵌页</title>
+    <title>v6内嵌页</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta charset="utf-8" />
@@ -237,7 +237,7 @@
           var infoArr = str.split(","); //渠道 - 手机型号 - 系统版本  - 应用版本
           console.log("展示的信息组内容：", infoArr);
           nodeInfo.innerText = JSON.stringify(obj.custom_info);
-          let total = "获取本地缓存信息成功" + JSON.stringify(obj.custom_info);
+          let total = "本地缓存信息：" + JSON.stringify(obj.custom_info);
           localStorage.setItem(`test110159`, total);
           if (infoArr.length > 0 && infoArr) {
             let systemVerData = ["PC", "h5"].includes(infoArr[0]) ? infoArr[2] : "android  " + infoArr[2];
