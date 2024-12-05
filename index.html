@@ -181,7 +181,7 @@
         </tr>
       </table>
     </div>
-    <div id="nodeInfo">custinfo信息：</div>
+    <!-- <div id="nodeInfo">custinfo信息：</div> -->
     <div>
       存储的信息:
       <div id="localInfo"></div>
@@ -222,7 +222,7 @@
         // obj = JSON.parse(jsonStr);
         // action = obj.action;
         console.log("拿到了", obj);
-        nodeInfo.innerText = JSON.stringify(str);
+        // nodeInfo.innerText = JSON.stringify(str);
       } else {
         console.log("拿不到", obj);
         nodeInfo.innerText = "不在客服环境，无法获取数据";
@@ -240,7 +240,7 @@
           let total = "本地缓存信息2：" + str;
           localStorage.setItem(`test110159`, total);
           if (infoArr.length > 0 && infoArr) {
-            let systemVerData = ["PC", "h5"].includes(infoArr[0]) ? infoArr[2] : "android  " + infoArr[2];
+            let systemVerData = ["PC", "h5", "miniProgram"].includes(infoArr[0]) ? infoArr[2] : "android  " + infoArr[2];
             chnlName.innerText = infoArr[0] || "无";
             phoneType.innerText = infoArr[1] || "无";
             systemVer.innerText = systemVerData; //"android  " + infoArr[2] || "无";
@@ -267,7 +267,7 @@
           break;
         case "switchkh": //切换访客对话,即当前对话框从A访客的对话切换到B访客的对话
           // custId.innerText = localStorage.getItem(`custId_${obj.gid}`) || "没有ucust_id";
-          localInfo.innerText = localStorage.getItem(`test110159`);
+          // localInfo.innerText = localStorage.getItem(`test110159`);
 
           // cmduser.innerText = localStorage.getItem(`cmduser_${obj.gid}`) || "无";
           if (localStorage.getItem(`chnlName_${obj.gid}`)) {
